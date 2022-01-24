@@ -1,0 +1,9 @@
+c:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\rls\debug\deps\slice_deque-cc1fb8bb028c6d46.rmeta: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\macros.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\mirrored\mod.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\mirrored\buffer.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\mirrored\winapi.rs
+
+c:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\rls\debug\deps\slice_deque-cc1fb8bb028c6d46.d: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\macros.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\mirrored\mod.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\mirrored\buffer.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\mirrored\winapi.rs
+
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\lib.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\macros.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\mirrored\mod.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\mirrored\buffer.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\slice-deque-0.3.0\src\mirrored\winapi.rs:

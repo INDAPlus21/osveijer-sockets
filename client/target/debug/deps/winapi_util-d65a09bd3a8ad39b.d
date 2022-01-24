@@ -1,0 +1,10 @@
+c:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\debug\deps\winapi_util-d65a09bd3a8ad39b.rmeta: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\console.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\file.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\win.rs
+
+c:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\debug\deps\libwinapi_util-d65a09bd3a8ad39b.rlib: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\console.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\file.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\win.rs
+
+c:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\debug\deps\winapi_util-d65a09bd3a8ad39b.d: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\console.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\file.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\win.rs
+
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\lib.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\console.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\file.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-util-0.1.5\src\win.rs:

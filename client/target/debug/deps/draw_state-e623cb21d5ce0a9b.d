@@ -1,0 +1,10 @@
+C:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\debug\deps\draw_state-e623cb21d5ce0a9b.rmeta: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src/lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src\preset.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src\state.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src\target.rs
+
+C:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\debug\deps\libdraw_state-e623cb21d5ce0a9b.rlib: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src/lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src\preset.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src\state.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src\target.rs
+
+C:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\debug\deps\draw_state-e623cb21d5ce0a9b.d: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src/lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src\preset.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src\state.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src\target.rs
+
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src/lib.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src\preset.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src\state.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\draw_state-0.8.0\src\target.rs:

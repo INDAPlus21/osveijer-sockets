@@ -1,0 +1,10 @@
+c:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\rls\debug\deps\crc32fast-c5c560428f3b4e50.rmeta: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\baseline.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\combine.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\specialized\mod.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\table.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\specialized\pclmulqdq.rs
+
+c:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\rls\debug\deps\crc32fast-c5c560428f3b4e50.d: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\baseline.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\combine.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\specialized\mod.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\table.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\specialized\pclmulqdq.rs
+
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\lib.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\baseline.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\combine.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\specialized\mod.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\table.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.3.1\src\specialized\pclmulqdq.rs:

@@ -1,0 +1,11 @@
+c:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\rls\debug\deps\claxon-1029e767f93b3add.rmeta: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\crc.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\error.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\frame.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\input.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\metadata.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\subframe.rs
+
+c:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\rls\debug\deps\claxon-1029e767f93b3add.d: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\crc.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\error.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\frame.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\input.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\metadata.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\subframe.rs
+
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\lib.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\crc.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\error.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\frame.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\input.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\metadata.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\claxon-0.4.3\src\subframe.rs:

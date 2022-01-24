@@ -1,0 +1,11 @@
+C:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\debug\deps\mint-56ce9b8dc9f40553.rmeta: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\into_mint.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\matrix.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\rotation.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\vector.rs
+
+C:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\debug\deps\libmint-56ce9b8dc9f40553.rlib: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\into_mint.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\matrix.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\rotation.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\vector.rs
+
+C:\Users\Oliver Sveijer\Documents\inda\osveijer-sockets\client\target\debug\deps\mint-56ce9b8dc9f40553.d: C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\lib.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\into_mint.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\matrix.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\rotation.rs C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\vector.rs
+
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\lib.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\into_mint.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\matrix.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\rotation.rs:
+C:\Users\Oliver\ Sveijer\.cargo\registry\src\github.com-1ecc6299db9ec823\mint-0.5.8\src\vector.rs:
