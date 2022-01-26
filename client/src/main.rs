@@ -1,6 +1,17 @@
 use ggez::{conf, event, graphics, ContextBuilder, Context, GameError, GameResult};
-use std::{path, env, collections::HashMap};
+use std::path;
 use osveijer_chess::{Game, Colour, Piece};
+use std::io::{self, ErrorKind, Read, Write};
+use std::net::TcpStream;
+use std::sync::mpsc::{self, TryRecvError};
+use std::thread;
+use std::time::Duration;
+
+/* Address to server. */
+const SERVER_ADDR: &str = "127.0.0.1:6000";
+
+/* Max message size in characters. */
+const MSG_SIZE: usize = 32;
 
 /// A chess board is 8x8 tiles.
 const GRID_SIZE: i16 = 8;
@@ -168,8 +179,9 @@ impl event::EventHandler<GameError> for AppState {
                     } else {
                         self.selected_square = Some((rank, file));
                         self.highlighted_squares = Vec::new();
-                        if let Some(c) = get_colour(self.game.board[rank][file]) {
-                            if c == self.game.active {
+                        let c = get_colour(self.game.board[rank][file]);
+                        if c != None {
+                            if c.unwrap() == self.game.active {
                                 self.highlighted_squares = pos_coord_vec(self.game.get_possible_moves(pos_string((rank,file))).unwrap());
                             };
                         };
@@ -178,8 +190,9 @@ impl event::EventHandler<GameError> for AppState {
                 None => {
                     self.selected_square = Some((rank, file));
                     self.highlighted_squares = Vec::new();
-                    if let Some(c) = get_colour(self.game.board[rank][file]) {
-                        if c == self.game.active {
+                    let c = get_colour(self.game.board[rank][file]);
+                    if c != None {
+                        if c.unwrap() == self.game.active {
                             self.highlighted_squares = pos_coord_vec(self.game.get_possible_moves(pos_string((rank,file))).unwrap());
                         };
                     };
@@ -207,9 +220,27 @@ impl event::EventHandler<GameError> for AppState {
 
 pub fn main() -> GameResult {
 
+    // connect to server
+    let mut client = match TcpStream::connect(SERVER_ADDR) {
+        Ok(_client) => {
+            println!("Connected to server at: {}", SERVER_ADDR);
+            _client
+        },
+        Err(_) => {
+            println!("Failed to connect to server at: {}", SERVER_ADDR);
+            std::process::exit(1)
+        }
+    };
+
+    // prevent io stream operation from blocking socket in case of slow communication
+    client.set_nonblocking(true).expect("Failed to initiate non-blocking!");
+
+    // create channel for communication between threads
+    let (sender, receiver) = mpsc::channel::<String>();
+
     let resource_dir = path::PathBuf::from("./resources");
 
-    let context_builder = ContextBuilder::new("schack", "viola")
+    let context_builder = ContextBuilder::new("schack", "oliver")
         .add_resource_path(resource_dir)        // Import image files to GGEZ
         .window_setup(
             conf::WindowSetup::default()  
@@ -223,7 +254,56 @@ pub fn main() -> GameResult {
         );
     let (mut contex, mut event_loop) = context_builder.build().expect("Failed to build context.");
 
-    let state = AppState::new(&mut contex).expect("Failed to create state.");
+    let mut state = AppState::new(&mut contex).expect("Failed to create state.");
+    
+    /* Start thread that listens to server. */
+    thread::spawn(move || loop {
+        let mut msg_buffer = vec![0; MSG_SIZE];
+
+        /* Read message from server. */
+        match client.read_exact(&mut msg_buffer) {
+            // received message
+            Ok(_) => {
+                // read until end-of-message (zero character)
+                let _msg = msg_buffer
+                    .into_iter()
+                    .take_while(|&x| x != 0)
+                    .collect::<Vec<_>>();
+                let msg = String::from_utf8(_msg).expect("Invalid UTF-8 message!");
+
+                let positions: Vec<&str> = msg.split(" ").collect();
+                state.game.make_move(positions[0].to_string(), positions[1].to_string());
+            },
+            // no message in stream
+            Err(ref err) if err.kind() == ErrorKind::WouldBlock => (),
+            // connection error
+            Err(_) => {
+                println!("Lost connection with server!");
+                break;
+            }
+        }
+
+        /* Send message in channel to server. */
+        match receiver.try_recv() {
+            // received message from channel
+            Ok(msg) => {
+                let mut msg_buffer = msg.clone().into_bytes();
+                // add zero character to mark end of message
+                msg_buffer.resize(MSG_SIZE, 0);
+
+                if client.write_all(&msg_buffer).is_err() {
+                    println!("Failed to send message!")
+                }
+            }, 
+            // no message in channel
+            Err(TryRecvError::Empty) => (),
+            // channel has been disconnected (main thread has terminated)
+            Err(TryRecvError::Disconnected) => break
+        }
+
+        thread::sleep(Duration::from_millis(100));
+    });
+
     event::run(contex, event_loop, state)       // Run window event loop
 }
 
@@ -246,11 +326,11 @@ fn pos_string(_pos: (usize, usize)) -> String  {
         5 => 'f',
         6 => 'g',
         7 => 'h',
-        _ => panic!("File wrong")
+        _ => panic!("file wrong")
     });
     match _pos.0 {
-        0..=7 => string1.push(char::from_digit(8 - _pos.0 as u32, 10).unwrap()),
-        _ => panic!("Rank wrong"),
+        0..=7 => string1.push(char::from_digit(_pos.0 as u32 + 1, 10).unwrap()),
+        _ => panic!("rank wrong"),
     };
 
     string1
