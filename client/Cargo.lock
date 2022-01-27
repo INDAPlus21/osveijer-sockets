@@ -1741,7 +1741,7 @@ dependencies = [
 [[package]]
 name = "osveijer-chess"
 version = "0.1.0"
-source = "git+https://github.com/INDAPlus21/osveijer-chess.git#79451069dc0f778919f2837b523ae51a74f88036"
+source = "git+https://github.com/INDAPlus21/osveijer-chess.git#8ca7b49e6ba967e417ddf2ba4e264d3524318cc3"
 
 [[package]]
 name = "owned_ttf_parser"

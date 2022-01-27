@@ -1,9 +1,9 @@
 use ggez::{conf, event, graphics, ContextBuilder, Context, GameError, GameResult};
 use std::path;
 use osveijer_chess::{Game, Colour, Piece};
-use std::io::{self, ErrorKind, Read, Write};
+use std::io::{ErrorKind, Read, Write};
 use std::net::TcpStream;
-use std::sync::mpsc::{self, TryRecvError};
+use std::sync::mpsc::{self, TryRecvError, Sender, Receiver};
 use std::thread;
 use std::time::Duration;
 
@@ -36,19 +36,23 @@ struct AppState {
     game: Game,
     // Save piece positions, which tiles has been clicked, current colour, etc...
     selected_square: Option<(usize,usize)>,
-    highlighted_squares: Vec<(usize,usize)>
+    highlighted_squares: Vec<(usize,usize)>,
+    sender: Sender<String>,
+    receiver: Receiver<String> 
 }
 
 impl AppState {
     /// Initialise new application, i.e. initialise new game and load resources.
-    fn new(ctx: &mut Context) -> GameResult<AppState> {
+    fn new(ctx: &mut Context, _sender: Sender<String>, _receiver: Receiver<String>) -> GameResult<AppState> {
 
         
         let state = AppState {
             sprites: AppState::load_sprites(ctx),
             game: Game::new(),
             selected_square: None,
-            highlighted_squares: vec![]
+            highlighted_squares: vec![],
+            sender: _sender,
+            receiver: _receiver
         };
 
         Ok(state)
@@ -81,6 +85,24 @@ impl event::EventHandler<GameError> for AppState {
 
     /// For updating game logic, which front-end doesn't handle.
     fn update(&mut self, _ctx: &mut Context) -> GameResult {
+        /* Send message in channel to server. */
+        match self.receiver.try_recv() {
+            // received message from channel
+            Ok(msg) => {
+                let positions: Vec<&str> = msg.split(" ").collect();
+                self.game.make_move(positions[0].to_string(), positions[1].to_string());
+                match self.selected_square {
+                    Some(sel) => self.highlighted_squares = pos_coord_vec(self.game.get_possible_moves(pos_string(sel))),
+                    None => ()
+                }
+                println!("{:?}", self.game.get_game_state());
+                
+            }, 
+            // no message in channel
+            Err(TryRecvError::Empty) => (),
+            // channel has been disconnected (main thread has terminated)
+            Err(TryRecvError::Disconnected) => ()
+        }
         Ok(())
     }
 
@@ -171,18 +193,22 @@ impl event::EventHandler<GameError> for AppState {
                 Some(pos) => {
                     if pos == (rank, file) {
                         self.selected_square = None;
-                        self.highlighted_squares = Vec::new();
+                        self.highlighted_squares = vec![];
                     } else if self.highlighted_squares.iter().any(|p| p == &(rank,file)) {
-                        self.game.make_move(pos_string(pos), pos_string((rank,file)));
+                        let msg: String = pos_string(pos) + " " + &pos_string((rank,file));
+                        if self.sender.send(msg).is_err() {
+                            println!("crashed");
+                            std::process::exit(1);
+                        }
                         self.selected_square = None;
-                        self.highlighted_squares = Vec::new();
+                        self.highlighted_squares = vec![];
                     } else {
                         self.selected_square = Some((rank, file));
-                        self.highlighted_squares = Vec::new();
+                        self.highlighted_squares = vec![];
                         let c = get_colour(self.game.board[rank][file]);
                         if c != None {
                             if c.unwrap() == self.game.active {
-                                self.highlighted_squares = pos_coord_vec(self.game.get_possible_moves(pos_string((rank,file))).unwrap());
+                                self.highlighted_squares = pos_coord_vec(self.game.get_possible_moves(pos_string((rank,file))));
                             };
                         };
                     }
@@ -193,7 +219,7 @@ impl event::EventHandler<GameError> for AppState {
                     let c = get_colour(self.game.board[rank][file]);
                     if c != None {
                         if c.unwrap() == self.game.active {
-                            self.highlighted_squares = pos_coord_vec(self.game.get_possible_moves(pos_string((rank,file))).unwrap());
+                            self.highlighted_squares = pos_coord_vec(self.game.get_possible_moves(pos_string((rank,file))));
                         };
                     };
                 }
@@ -210,10 +236,6 @@ impl event::EventHandler<GameError> for AppState {
     ) {
         if keycode == event::KeyCode::Escape {
             event::quit(ctx);
-        } else if keycode == event::KeyCode::R {
-            self.game = Game::new();
-            self.selected_square = None;
-            self.highlighted_squares = Vec::new();
         }
     }
 }
@@ -237,6 +259,7 @@ pub fn main() -> GameResult {
 
     // create channel for communication between threads
     let (sender, receiver) = mpsc::channel::<String>();
+    let (send, rec) = mpsc::channel::<String>();
 
     let resource_dir = path::PathBuf::from("./resources");
 
@@ -254,7 +277,7 @@ pub fn main() -> GameResult {
         );
     let (mut contex, mut event_loop) = context_builder.build().expect("Failed to build context.");
 
-    let mut state = AppState::new(&mut contex).expect("Failed to create state.");
+    let mut state = AppState::new(&mut contex, sender, rec).expect("Failed to create state.");
     
     /* Start thread that listens to server. */
     thread::spawn(move || loop {
@@ -270,9 +293,10 @@ pub fn main() -> GameResult {
                     .take_while(|&x| x != 0)
                     .collect::<Vec<_>>();
                 let msg = String::from_utf8(_msg).expect("Invalid UTF-8 message!");
-
-                let positions: Vec<&str> = msg.split(" ").collect();
-                state.game.make_move(positions[0].to_string(), positions[1].to_string());
+                if send.send(msg).is_err() {
+                    println!("crashed");
+                    std::process::exit(1);
+                }
             },
             // no message in stream
             Err(ref err) if err.kind() == ErrorKind::WouldBlock => (),
@@ -336,34 +360,39 @@ fn pos_string(_pos: (usize, usize)) -> String  {
     string1
 }
 
-fn pos_coord_vec(vec: Vec<String>) -> Vec<(usize,usize)> {
-    let mut out = Vec::new();
-    for i in vec {
-        let chars: Vec<char> = i.chars().collect();
-        out.push((
-            match chars[1] {
-                '1' => 0,
-                '2' => 1,
-                '3' => 2,
-                '4' => 3,
-                '5' => 4,
-                '6' => 5,
-                '7' => 6,
-                '8' => 7,
-                _ => panic!("Rank wrong")
-            },
-            match chars[0] {
-                'a' => 0,
-                'b' => 1,
-                'c' => 2,
-                'd' => 3,
-                'e' => 4,
-                'f' => 5,
-                'g' => 6,
-                'h' => 7,
-                _ => panic!("File wrong")
+fn pos_coord_vec(vec: Option<Vec<String>>) -> Vec<(usize,usize)> {
+    match vec {
+        Some(v) => {
+            let mut out = Vec::new();
+            for i in v {
+                let chars: Vec<char> = i.chars().collect();
+                out.push((
+                    match chars[1] {
+                        '1' => 0,
+                        '2' => 1,
+                        '3' => 2,
+                        '4' => 3,
+                        '5' => 4,
+                        '6' => 5,
+                        '7' => 6,
+                        '8' => 7,
+                        _ => panic!("Rank wrong")
+                    },
+                    match chars[0] {
+                        'a' => 0,
+                        'b' => 1,
+                        'c' => 2,
+                        'd' => 3,
+                        'e' => 4,
+                        'f' => 5,
+                        'g' => 6,
+                        'h' => 7,
+                        _ => panic!("File wrong")
+                    }
+                ));
             }
-        ));
+            out
+        },
+        None => vec![]
     }
-    out
 }

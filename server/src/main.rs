@@ -1,6 +1,6 @@
 use std::io::{ErrorKind, Read, Write};
-use std::net::TcpListener;
-use std::sync::mpsc;
+use std::net::{TcpListener};
+use std::sync::{mpsc, Mutex, Arc};
 use std::thread;
 
 /* Address to server. */
@@ -17,6 +17,7 @@ fn sleep() {
 }
 
 fn main() {
+
     // connect to server
     let server = match TcpListener::bind(SERVER_ADDR) {
         Ok(_client) => {
@@ -32,6 +33,11 @@ fn main() {
     server.set_nonblocking(true).expect("Failed to initiate non-blocking!");
 
     let mut clients = vec![];
+    let colour = Arc::new(Mutex::new(0));
+    {
+        let mut col = colour.lock().unwrap();
+        *col = 1;
+    }
 
     // create channel for communication between threads
     let (sender, receiver) = mpsc::channel::<String>();
@@ -44,8 +50,22 @@ fn main() {
 
             let _sender = sender.clone();
 
-            clients.push(
-                socket.try_clone().expect("Failed to clone client! Client wont receive messages!"));
+            let client = socket.try_clone().expect("Failed to clone client! Client wont receive messages!");
+
+            clients.push(client);
+            
+            let c;
+            match clients.len() % 2 {
+                0 => {
+                    c = 1;
+                },
+                1 => {
+                    c = 2;
+                },
+                _ => c = 0
+            };
+
+            let colour = Arc::clone(&colour);
 
             thread::spawn(move || loop {
 
@@ -61,9 +81,11 @@ fn main() {
                             .collect::<Vec<_>>();
                         let msg = String::from_utf8(_msg).expect("Invalid UTF-8 message!");
 
-                        println!("{}: {:?}", addr, msg);
-
-                        _sender.send(msg).expect("Failed to relay message!");
+                        let col = colour.lock().unwrap();
+                        if c == *col {
+                            println!("{}: {:?}", addr, msg);
+                            _sender.send(msg).expect("Failed to relay message!")
+                        }
                     }, 
                     // no message in stream
                     Err(ref err) if err.kind() == ErrorKind::WouldBlock => (),
@@ -80,7 +102,6 @@ fn main() {
 
         /* Broadcast incoming messages. */
         if let Ok(msg) = receiver.try_recv() {
-
             // send message to all clients
             clients = clients.into_iter().filter_map(|mut client| {
                 let mut msg_buff = msg.clone().into_bytes();
@@ -89,6 +110,12 @@ fn main() {
 
                 client.write_all(&msg_buff).map(|_| client).ok()
             }).collect::<Vec<_>>();
+            let mut col = colour.lock().unwrap();
+            *col = match *col {
+                1 => 2,
+                2 => 1,
+                _ => 1
+            }
         }
 
         sleep();
